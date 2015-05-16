@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:dialogLayout">@style/noTitleDialog</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="LightTheme" parent="AppTheme">
+        <item name="actionBarStyle">@style/actionbar_style</item>
+    </style>
+
+    <style name="LightTheme_forSetting" parent="Theme.AppCompat.Light">
+    </style>
+
+    <style name="LightTheme_transparent_actionbar" parent="AppTheme">
+        <item name="actionBarStyle">@style/actionbar_style_transparent</item>
+    </style>
+
+    <style name="actionbar_style" parent="Base.Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/actionbar_background</item>
+        <!--<item name="titleTextStyle">@style/title_text</item>-->
+    </style>
+
+    <style name="actionbar_style_transparent" parent="Base.Widget.AppCompat.ActionBar">
+        <item name="background">@drawable/actionbar_background_mask</item>
+        <!--<item name="titleTextStyle">@style/title_text</item>-->
+    </style>
+
+    <!--<style name="title_text">-->
+        <!--<item name="android:textColor">@color/title_color</item>-->
+        <!--<item name="android:textSize">@dimen/abc_text_size_body_1_material</item>-->
+        <!--<item name="android:typeface">normal</item>-->
+    <!--</style>-->
+
+    <style name="noTitleDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colors">
+        <item>Red orange</item>
+        <item>Red</item>
+        <item>Cyan</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+        <item>Pink</item>
+    </array>
+    <array name="long_click_note_mark">
+        <item>UnFlag</item>
+        <item>Delete</item>
+    </array>
+    <array name="long_click_note_no_mark">
+        <item>Flag</item>
+        <item>Delete</item>
+    </array>
+</resources>

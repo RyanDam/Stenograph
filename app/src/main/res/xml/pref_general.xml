@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="quick_color"
+        android:title="@string/color_choosing"
+        android:defaultValue="1"
+        android:entries="@array/colors_setting_choose"
+        android:entryValues="@array/colors_setting_value"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <ListPreference
+        android:key="list_column"
+        android:title="@string/list_column_choosing"
+        android:defaultValue="2"
+        android:entries="@array/list_column_entries"
+        android:entryValues="@array/list_column_values"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
+    <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
+         design guidelines. -->
+    <!--<Preference android:title="@string/sync_data">-->
+        <!--<intent android:action=".SyncActivityStart"/>-->
+    <!--</Preference>-->
+
+</PreferenceScreen>

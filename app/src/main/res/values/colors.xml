@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="white_semi">#abffffff</color>
+    <color name="brown">#ff3d3d3d</color>
+    <color name="blue">#ff3d9cff</color>
+    <color name="semi_transparent">#50000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="actionbar_color">#ffe8e8e8</color>
+    <color name="statusbar_color">#ff000000</color>
+    <color name="title_color">#ffffff</color>
+    <color name="background_color">#ffffffff</color>
+    <color name="background_color_2">#ffffffff</color>
+    <color name="fab_normal">#ffda2530</color>
+    <color name="fab_pressed">#ff7a151b</color>
+    <color name="fab_ripple">#41ffffff</color>
+    <color name="button_color">#ffffff</color>
+</resources>

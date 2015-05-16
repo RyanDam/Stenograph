@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rstudio.notii_pro.Editnote"
+    android:fitsSystemWindows="true"
+    android:background="@color/statusbar_color">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/background_color">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/editNote_background" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:id="@+id/xxx">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editNote_title"
+                    android:layout_gravity="left"
+                    android:hint="@string/hint_title"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_big"
+                    android:background="@color/transparent"
+                    android:padding="@dimen/padding_note_text"
+                    android:textColor="@color/text_note_color_edit" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:ems="10"
+                    android:id="@+id/editNote_text"
+                    android:layout_gravity="left"
+                    android:hint="@string/hint_text"
+                    android:textSize="@dimen/text_size_normal"
+                    android:background="@color/transparent"
+                    android:padding="@dimen/padding_note_text"
+                    android:textColor="@color/text_note_color_edit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/editNote_time"
+                    android:layout_gravity="right"
+                    android:padding="@dimen/padding_note_text"
+                    android:textColor="@color/text_note_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/editNote_remind"
+                    android:layout_gravity="right"
+                    android:paddingLeft="@dimen/padding_note_text"
+                    android:paddingRight="@dimen/padding_note_text"
+                    android:paddingBottom="@dimen/padding_note_text"
+                    android:textColor="@color/text_note_color" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editNote_flag"
+            android:src="@drawable/flag"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/padding_flag" />
+
+    </FrameLayout>
+
+</RelativeLayout>

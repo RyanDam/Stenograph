@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_note_color">#82000000</color>
+    <color name="text_note_color_edit">#e8000000</color>
+    <color name="trans">#00000000</color>
+    <color name="redorange">#ffffcc66</color>
+    <color name="red">#ffff5040</color>
+    <color name="cyan">#ff29c7ff</color>
+    <color name="green">#ff00ee76</color>
+    <color name="yellow">#ffeeee00</color>
+    <color name="orange">#ffffdb35</color>
+    <color name="pink">#ffff83aa</color>
+</resources>
