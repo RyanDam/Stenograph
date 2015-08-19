@@ -1,14 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="500" app:showAsAction="never" android:icon="@drawable/action_setting" />
+
+    <item android:id="@+id/action_rate_app" android:title="@string/action_rate"
+        android:orderInCategory="560" app:showAsAction="never" android:icon="@drawable/action_setting" />
+
+    <item android:id="@+id/action_share_app" android:title="@string/action_share"
+        android:orderInCategory="550" app:showAsAction="never" android:icon="@drawable/action_setting" />
+
     <item android:id="@+id/action_about" android:title="@string/action_about"
         android:orderInCategory="600" app:showAsAction="never" android:icon="@drawable/action_setting" />
+
     <item android:id="@+id/action_sync" android:title="@string/action_sync"
         android:orderInCategory="400" app:showAsAction="never" android:icon="@drawable/action_setting" />
+
     <item android:id="@+id/action_plus" android:title="@string/action_plus"
         android:orderInCategory="200" app:showAsAction="always" android:icon="@drawable/action_plus" />
-    <item android:id="@+id/action_list" android:title="@string/action_change_list"
-        android:orderInCategory="300" app:showAsAction="always" android:icon="@drawable/action_change_list" />
+
+    <item android:id="@+id/action_check_list" android:title="@string/action_check_list"
+        android:orderInCategory="300" app:showAsAction="always" android:icon="@drawable/action_checklist" />
+
 </menu>

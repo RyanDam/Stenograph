@@ -1,23 +1,26 @@
-package com.rstudio.notii_pro;
+package com.rstudio.notii_pro.item;
 
-public class Note_item{
+public class NoteItem {
 	private String title, text, date;
 	private int color, id = 0;
 	private long remind = 0;
 	private boolean bold;
-	public Note_item(){
-		super();
+	private boolean isCheckList;
+	public NoteItem(){
+		this.title = "";
+		this.text = "";
+		this.date = "";
+		this.bold = false;
+		this.isCheckList = false;
 	}
-	public Note_item(String title, String text, String date, int color, boolean bold) {
-		super();
+	public NoteItem(String title, String text, String date, int color, boolean bold) {
 		this.title = title;
 		this.text = text;
 		this.date = date;
 		this.color = color;
 		this.bold = bold;
 	}
-	public Note_item(int id, String title, String text, String date, int color, boolean bold) {
-		super();
+	public NoteItem(int id, String title, String text, String date, int color, boolean bold) {
 		this.title = title;
 		this.text = text;
 		this.date = date;
@@ -25,7 +28,7 @@ public class Note_item{
 		this.bold = bold;
 		this.id = id;
 	}
-    public Note_item(String input) {
+    public NoteItem(String input) {
         String x = null;
         int step = 1;
         for (int i = 0; i < input.length(); i++) {
@@ -106,5 +109,14 @@ public class Note_item{
 	}
 	public boolean getBold(){
 		return this.bold;
+	}
+	public boolean isCheckList() {
+		return isCheckList;
+	}
+	public void setIsCheckList(boolean isCheckList) {
+		this.isCheckList = isCheckList;
+	}
+	public boolean isBold() {
+		return bold;
 	}
 }

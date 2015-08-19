@@ -7,23 +7,19 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/background_color">
+        android:layout_height="fill_parent">
 
-        <ScrollView
+        <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/editNote_background" >
+            android:background="@color/background_color"
+            android:id="@+id/editNote_background"
+            android:padding="8dp">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:id="@+id/xxx">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -37,27 +33,58 @@
                     android:padding="@dimen/padding_note_text"
                     android:textColor="@color/text_note_color_edit" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:ems="10"
-                    android:id="@+id/editNote_text"
-                    android:layout_gravity="left"
-                    android:hint="@string/hint_text"
-                    android:textSize="@dimen/text_size_normal"
-                    android:background="@color/transparent"
-                    android:padding="@dimen/padding_note_text"
-                    android:textColor="@color/text_note_color_edit" />
+                <ListView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/check_list_edit"
+                    android:visibility="visible"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:layout_marginBottom="65dp" />
+
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="65dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:id="@+id/editNote_text"
+                        android:layout_gravity="left"
+                        android:hint="@string/hint_text"
+                        android:textSize="@dimen/text_size_normal"
+                        android:background="@color/transparent"
+                        android:padding="@dimen/padding_note_text"
+                        android:textColor="@color/text_note_color_edit" />
+                </ScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/xxx"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_gravity="bottom"
+                android:paddingLeft="@dimen/activity_horizontal_margin">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
+                    android:text="New Text44"
                     android:id="@+id/editNote_time"
                     android:layout_gravity="right"
-                    android:padding="@dimen/padding_note_text"
-                    android:textColor="@color/text_note_color" />
+                    android:textColor="@color/text_note_color"
+                    android:background="@drawable/date_alarm_background"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,13 +92,13 @@
                     android:text="New Text"
                     android:id="@+id/editNote_remind"
                     android:layout_gravity="right"
-                    android:paddingLeft="@dimen/padding_note_text"
-                    android:paddingRight="@dimen/padding_note_text"
-                    android:paddingBottom="@dimen/padding_note_text"
-                    android:textColor="@color/text_note_color" />
+                    android:textColor="@color/text_note_color"
+                    android:background="@drawable/date_alarm_background"
+                    android:textSize="12dp" />
 
             </LinearLayout>
-        </ScrollView>
+
+        </FrameLayout>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -80,7 +107,6 @@
             android:src="@drawable/flag"
             android:layout_gravity="right"
             android:layout_marginRight="@dimen/padding_flag" />
-
     </FrameLayout>
 
 </RelativeLayout>

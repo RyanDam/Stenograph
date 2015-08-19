@@ -19,12 +19,14 @@
     </style>
 
     <style name="actionbar_style" parent="Base.Widget.AppCompat.ActionBar">
-        <item name="background">@drawable/actionbar_background</item>
+        <item name="background">@color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!--<item name="titleTextStyle">@style/title_text</item>-->
     </style>
 
     <style name="actionbar_style_transparent" parent="Base.Widget.AppCompat.ActionBar">
-        <item name="background">@drawable/actionbar_background_mask</item>
+        <item name="background">@color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
         <!--<item name="titleTextStyle">@style/title_text</item>-->
     </style>
 

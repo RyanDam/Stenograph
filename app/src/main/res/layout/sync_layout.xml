@@ -28,35 +28,6 @@
             android:layout_margin="10dp"
             android:textColor="@color/text_note_color" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="10dp">
-
-            <Button
-                android:layout_width="@dimen/button_length"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/backup_button"
-                android:id="@+id/backup_bt"
-                android:background="@drawable/button_style"
-                android:textColor="@color/button_color"
-                android:padding="@dimen/padding_button_text"
-                android:layout_marginRight="@dimen/padding_button"
-                android:textSize="@dimen/text_size_button" />
-
-            <Button
-                android:layout_width="@dimen/button_length"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/restore_button"
-                android:id="@+id/restore_bt"
-                android:background="@drawable/button_style"
-                android:textColor="@color/button_color"
-                android:padding="@dimen/padding_button_text"
-                android:layout_marginLeft="@dimen/padding_button"
-                android:textSize="@dimen/text_size_button" />
-        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

@@ -17,7 +17,7 @@
         android:text="New Text"
         android:id="@+id/about_text"
         android:layout_gravity="center_horizontal"
-        android:padding="10dp"
+        android:padding="4dp"
         android:textAlignment="center"
         android:textStyle="bold"
         android:focusableInTouchMode="false"
@@ -25,14 +25,4 @@
         android:textSize="@dimen/text_size_normal"
         android:textColor="@color/text_note_color" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="@dimen/button_length"
-        android:layout_height="@dimen/button_height"
-        android:text="@string/rate_text"
-        android:id="@+id/rate_button"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_style"
-        android:textColor="@color/button_color" />
 </LinearLayout>

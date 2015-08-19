@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ripple="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:paddingLeft="@dimen/padding_note_side"
@@ -10,64 +12,81 @@
     android:paddingRight="@dimen/padding_note_side"
     android:paddingBottom="@dimen/padding_note_top">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/color_item">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/title_item"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold"
-            android:paddingLeft="@dimen/padding_note_text"
-            android:paddingTop="@dimen/padding_note_text"
-            android:paddingRight="@dimen/padding_note_text"
-            android:maxLines="1"
-            android:lines="1"
-            android:textColor="@color/text_note_color" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/demo_text"
-            android:id="@+id/text_item"
-            android:textSize="@dimen/abc_text_size_small_material"
-            android:padding="@dimen/padding_note_text"
-            android:maxLines="15"
-            android:textStyle="normal"
-            android:textColor="@color/text_note_color" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/remind_item"
-            android:layout_gravity="right"
-            android:paddingRight="@dimen/padding_note_text"
-            android:paddingBottom="@dimen/padding_note_text"
-            android:paddingLeft="@dimen/padding_note_text"
-            android:textSize="@dimen/text_size_very_small"
-            android:textColor="@color/text_note_color" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/flag"
-        android:background="@drawable/flag"
-        android:layout_gravity="right"
-        android:layout_marginRight="@dimen/padding_flag" />
-
-    <ImageView
+    <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/imageView"
-        android:background="@drawable/gradient_dark"
-        android:layout_gravity="bottom" />
+        card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/color_item">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/title_item"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold"
+                android:paddingLeft="@dimen/padding_note_text"
+                android:paddingTop="@dimen/padding_note_text"
+                android:paddingRight="@dimen/padding_note_text"
+                android:maxLines="1"
+                android:lines="1"
+                android:textColor="@color/text_note_color" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list_item"
+                android:layout_margin="8dp"
+                android:focusable="false"
+                android:clickable="false">
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/demo_text"
+                android:id="@+id/text_item"
+                android:textSize="@dimen/abc_text_size_small_material"
+                android:padding="@dimen/padding_note_text"
+                android:maxLines="15"
+                android:textStyle="normal"
+                android:textColor="@color/text_note_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/remind_item"
+                android:layout_gravity="right"
+                android:paddingRight="@dimen/padding_note_text"
+                android:paddingBottom="@dimen/padding_note_text"
+                android:paddingLeft="@dimen/padding_note_text"
+                android:textSize="@dimen/text_size_very_small"
+                android:textColor="@color/text_note_color" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flag"
+            android:background="@drawable/flag"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/padding_flag" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView"
+            android:background="@drawable/gradient_dark"
+            android:layout_gravity="bottom" />
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

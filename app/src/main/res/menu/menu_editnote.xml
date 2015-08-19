@@ -8,6 +8,8 @@
         android:orderInCategory="200" app:showAsAction="always" android:icon="@drawable/action_flag" />
     <item android:id="@+id/editNote_remind" android:title="@string/action_remind"
         android:orderInCategory="300" app:showAsAction="always" android:icon="@drawable/action_remind" />
+    <item android:id="@+id/editNote_share" android:title="@string/action_share"
+        android:orderInCategory="350" app:showAsAction="never" android:icon="@drawable/action_delete" />
     <item android:id="@+id/editNote_delete" android:title="@string/action_delete"
-        android:orderInCategory="400" app:showAsAction="always" android:icon="@drawable/action_delete" />
+        android:orderInCategory="400" app:showAsAction="never" android:icon="@drawable/action_delete" />
 </menu>

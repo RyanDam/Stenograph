@@ -1,0 +1,40 @@
+<resources>
+    <string name="title_activity_settings">Cài đặt</string>
+    <string name="password_enable">Sử dụng mật khẩu</string>
+    <string name="password">Thay mật khẩu</string>
+    <string name="default_password">123456</string>
+    <string name="color_choosing">Màu ghi chú mặc định</string>
+    <string name="list_column_choosing">Số cột ghi chú hiển thị</string>
+    <string-array name="colors_setting_choose">
+        <item>Đỏ cam</item>
+        <item>Đỏ</item>
+        <item>Xanh dương</item>
+        <item>Xanh lá cây</item>
+        <item>Vàng</item>
+        <item>Cam</item>
+        <item>Hồng</item>
+    </string-array>
+    <string-array name="colors_setting_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="list_column_entries">
+        <item>Một</item>
+        <item>Hai</item>
+        <item>Ba</item>
+        <item>Bốn</item>
+    </string-array>
+    <string-array name="list_column_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string name="stuffs">Cài đặt khác</string>
+    <string name="sync_data">Đồng bộ tất cả ghi chú</string>
+</resources>

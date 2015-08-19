@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text_note_color">#82000000</color>
+    <color name="text_note_color_semi">#3b000000</color>
     <color name="text_note_color_edit">#e8000000</color>
     <color name="trans">#00000000</color>
     <color name="redorange">#ffffcc66</color>

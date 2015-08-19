@@ -14,5 +14,19 @@
     <color name="fab_normal">#ffda2530</color>
     <color name="fab_pressed">#ff7a151b</color>
     <color name="fab_ripple">#41ffffff</color>
-    <color name="button_color">#ffffff</color>
+
+    <color name="button_color">#000000</color>
+    <color name="button_color_stressed">#393939</color>
+
+    <color name="button_color_blue">#ff098dff</color>
+    <color name="button_color_blue_stressed">#066ac0</color>
+    <color name="button_text_color_blue">#ffffff</color>
+    <color name="button_divider_color_blue">#00d3ff</color>
+
+    <color name="button_text_color">#ff098dff</color>
+    <color name="button_border_color">#422d2d2d</color>
+
+    <color name="check_text_empty">#72000000</color>
+    <color name="check_text_fielded">#ef000000</color>
+    <color name="check_text_hint">#3f000000</color>
 </resources>

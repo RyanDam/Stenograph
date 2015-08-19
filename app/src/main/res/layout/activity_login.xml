@@ -4,21 +4,15 @@
     tools:context="com.rstudio.notii_pro.LoginActivity"
     android:background="@color/background_color_2">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollView" >
+        android:layout_height="fill_parent">
 
-        <FrameLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/login_layout"
-                android:layout_gravity="top|center" />
-        </FrameLayout>
-    </ScrollView>
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/login_layout"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
 </RelativeLayout>

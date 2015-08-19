@@ -10,11 +10,16 @@
         <item>Pink</item>
     </array>
     <array name="long_click_note_mark">
-        <item>UnFlag</item>
+        <item>Remove flag</item>
+        <item>Share</item>
         <item>Delete</item>
     </array>
     <array name="long_click_note_no_mark">
         <item>Flag</item>
+        <item>Share</item>
+        <item>Delete</item>
+    </array>
+    <array name="check_list_long_click_item">
         <item>Delete</item>
     </array>
 </resources>

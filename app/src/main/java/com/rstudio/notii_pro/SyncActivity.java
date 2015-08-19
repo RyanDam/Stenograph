@@ -34,6 +34,7 @@ import com.google.android.gms.drive.query.Query;
 import com.google.android.gms.drive.query.SearchableField;
 import com.google.android.gms.drive.DriveApi.MetadataBufferResult;
 import com.google.android.gms.drive.MetadataBuffer;
+import com.rstudio.notii_pro.task.ApiClientAsyncTask;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -59,6 +60,7 @@ public class SyncActivity extends ActionBarActivity implements ConnectionCallbac
         setContentView(R.layout.activity_sync);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
 
         // connect object to xml
         backup = (Button) findViewById(R.id.backup_bt);
@@ -67,12 +69,7 @@ public class SyncActivity extends ActionBarActivity implements ConnectionCallbac
 
         // setup instruction text
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/archer.ttf");
-        String text = "You can backup your notes\n"
-                + "on Cloud (Drive). You will need\n"
-                + "internet access to use this function.\n\n"
-                + "Click on Backup button to backup notes.\n"
-                + "Click on Restore button to restore notes.\n\n"
-                + "You will lose all current notes. So be careful";
+        String text = getResources().getString(R.string.sync_help_string);
         sync_text.setText(text);
         sync_text.setTypeface(font);
 

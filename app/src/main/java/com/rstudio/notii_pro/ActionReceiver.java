@@ -15,7 +15,5 @@ public class ActionReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             context.startService(new Intent(context, StartAlarm.class));
         }
-        // an Intent broadcast.
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

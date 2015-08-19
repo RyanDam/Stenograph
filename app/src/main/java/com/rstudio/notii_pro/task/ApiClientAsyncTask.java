@@ -1,4 +1,4 @@
-package com.rstudio.notii_pro;
+package com.rstudio.notii_pro.task;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;

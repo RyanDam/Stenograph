@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="colors">
+        <item>Đỏ cam</item>
+        <item>Đỏ</item>
+        <item>Xanh dương</item>
+        <item>Xanh lá cây</item>
+        <item>Vàng</item>
+        <item>Cam</item>
+        <item>Hồng</item>
+    </array>
+    <array name="long_click_note_mark">
+        <item>Bỏ đánh dấu</item>
+        <item>Chia sẻ</item>
+        <item>Xóa</item>
+    </array>
+    <array name="long_click_note_no_mark">
+        <item>Đánh dấu</item>
+        <item>Chia sẻ</item>
+        <item>Xóa</item>
+    </array>
+    <array name="check_list_long_click_item">
+        <item>Xóa</item>
+    </array>
+</resources>

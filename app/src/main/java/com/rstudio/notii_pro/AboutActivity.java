@@ -24,6 +24,7 @@ public class AboutActivity extends ActionBarActivity {
         setContentView(R.layout.activity_about);
         // setup ActionBar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setElevation(0);
 
         // connect object with xml
         about_text = (TextView) findViewById(R.id.about_text);
@@ -31,15 +32,7 @@ public class AboutActivity extends ActionBarActivity {
 
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/archer.ttf");
         String text;
-        text = "Stenograph 2.0\n\n"
-            + "dot R Studio\n"
-            + "Author: Dam Vu Duy\n\n"
-            + "This is my first app on android\n"
-            + "I just made this app for fun and\n"
-            + "test my coding skill.\n\n"
-            + "Thank maurycyw for StaggeredGridView\n"
-            + "Thank afollestad for Material dialogs\n\n"
-            + "Hope you like this app, cheer.";
+        text = getResources().getString(R.string.about_string);
         about_text.setText(text);
         about_text.setTypeface(font);
 

@@ -13,11 +13,13 @@
     <string name="hint_title">Write your title here...</string>
     <string name="hint_text">Write your note here...</string>
     <string name="action_plus">Add a note</string>
-    <string name="action_change_list">Change list column</string>
+    <string name="action_check_list">Add checklist</string>
     <string name="action_edit_color">Change color of note</string>
-    <string name="action_flag">Mark/unMark note</string>
+    <string name="action_flag">Mark/Unmark note</string>
     <string name="action_remind">Set remind</string>
-    <string name="action_delete">Delete this note</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_share">Share</string>
+    <string name="action_rate">Rate and feedback</string>
     <string name="action_sync">Sync</string>
     <string name="action_about">About</string>
     <string name="title_activity_main_activity2">MainActivity2</string>
@@ -32,6 +34,29 @@
     <string name="title_activity_sync">Sync Data</string>
     <string name="title_activity_about">About</string>
     <string name="rate_text">Rate this app!</string>
-    <string name="market_rate">market://details?id=com.RStudio.notii_pro</string>
 
+    <string name="share_text">Hey, get a stylist note app here:\n
+        https://play.google.com/store/apps/details?id=com.RStudio.notii_pro</string>
+    <string name="market_rate">market://details?id=com.RStudio.notii_pro</string>
+    <string name="check_text_hint">New item...</string>
+
+    <string name="about_string">Stenograph 2.1.1\n\n
+            .R Studio\n\n
+            This is my first app on android\n
+            I just made this app for fun and\n
+            test my coding skill.\n\n
+            Hope you like this app, cheer.</string>
+
+    <string name="sync_help_string">You can backup your notes\n
+                on Cloud (Drive). You will need\n
+                internet access to use this function.\n\n
+                You will lose all current notes. So be careful</string>
+    <string name="wrong_time_pick">Wrong time picked, sir :(</string>
+    <string name="will_remind_text">Will remind at</string>
+    <string name="edit_text_note">Edited</string>
+    <string name="create_text_note">Created</string>
+    <string name="remind_text_note">Will remind at</string>
+    <string name="reminded_text_note">Reminded at</string>
+    <string name="will_remind_text_note">Will remind you</string>
+    <string name="will_reminded_text_note">Reminded</string>
 </resources>

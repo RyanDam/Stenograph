@@ -2,23 +2,26 @@ package com.rstudio.notii_pro;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import com.afollestad.materialdialogs.MaterialDialogCompat;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.origamilabs.library.views.StaggeredGridView;
 import com.origamilabs.library.views.StaggeredGridView.OnItemClickListener;
 import com.origamilabs.library.views.StaggeredGridView.OnItemLongClickListener;
+import com.rstudio.notii_pro.adapters.NoteAdapter;
+import com.rstudio.notii_pro.database.DatabaseMng;
+import com.rstudio.notii_pro.item.CheckItem;
+import com.rstudio.notii_pro.item.NoteItem;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,22 +30,20 @@ public class MainActivity extends ActionBarActivity {
 
     public static final int CREATE_NEW_NOTE = 1;
     public static final int EDIT_NOTE = 2;
-    public static final int NOTE_BACK = 3;
     public static final int LOGIN = 4;
     public static final int LOGIN_STATUS_BACK = 5;
     public static final int SYNC_TASK = 6;
     public static final int RESTORE_DONE = 6;
 
-    Note_item note;
-    int countQuick = 0, posNote = -1, count = 0;
-    public StaggeredGridView list;
-    public static ArrayList<Note_item> arrayList;
-    public Note_adapter adapterList;
-    public Intent mMainToEdit, mMainToSetting, mMainToStartAlarm;
+    private NoteItem note;
+    private StaggeredGridView list;
+    static ArrayList<NoteItem> arrayList;
+    public NoteAdapter adapterList;
+    public Intent mMainToEdit;
+    private Intent intent;
     private SharedPreferences sharedPref;
-    private int location_editnote;
-    private boolean saveDataMode = true;
     private boolean loginMode;
+    private boolean quickOpenNote = false;
 
     Calendar now;
     SimpleDateFormat getTime;
@@ -60,6 +61,8 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.logo_actionbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        getSupportActionBar().setElevation(0);
+
         // turn login screen on
         loginMode = true;
 
@@ -72,8 +75,13 @@ public class MainActivity extends ActionBarActivity {
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(StaggeredGridView parent, View view, int position, long id) {
-                mMainToEdit.putExtra("Note", setBundle(arrayList.get(position)));
-                location_editnote = position;
+                if (arrayList.get(position).getText().compareTo("") == 0) {
+                    // if it doesn't have any text
+                    mMainToEdit.putExtra("CheckMode", true);
+                } else {
+                    mMainToEdit.putExtra("CheckMode", false);
+                }
+                mMainToEdit.putExtra("Note", arrayList.get(position).getId());
                 startActivityForResult(mMainToEdit, EDIT_NOTE);
             }
         });
@@ -93,16 +101,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    public void onDestroy() {
-        // when this app exit, save data function will be called
-        if (saveDataMode)
-            saveDatabase();
-        super.onDestroy();
-    }
-
-    @Override
     public void onResume() {
-        adapterList.notifyDataSetChanged();
+        loadDatabase();
         // setup list column number
         // must reset state after back activity
         String list_column_setting = sharedPref.getString("list_column", "2");
@@ -128,31 +128,17 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             return true;
         }
-        else if (id == R.id.action_list) {
-            if (list.getColumnCount() == 1) {
-                list.setColumnCount(2);
-                sharedPref.edit().putString("list_column", "2").apply();
-                adapterList.notifyDataSetChanged();
-            }
-            else if (list.getColumnCount() == 2) {
-                list.setColumnCount(3);
-                sharedPref.edit().putString("list_column", "3").apply();
-                adapterList.notifyDataSetChanged();
-            }
-            else if (list.getColumnCount() == 3) {
-                list.setColumnCount(4);
-                sharedPref.edit().putString("list_column", "4").apply();
-                adapterList.notifyDataSetChanged();
-            }
-            else if (list.getColumnCount() == 4) {
-                list.setColumnCount(1);
-                sharedPref.edit().putString("list_column", "1").apply();
-                adapterList.notifyDataSetChanged();
-            }
+        else if (id == R.id.action_check_list) {
+            mMainToEdit.putExtra("WishId", (getMaxNoteId() + 1));
+            Log.d("max note", "" + (getMaxNoteId() + 1));
+            mMainToEdit.putExtra("CheckMode", true);
+            mMainToEdit.putExtra("Note", -1);
+            startActivity(mMainToEdit);
             return true;
         }
         else if (id == R.id.action_plus) {
-            mMainToEdit.putExtra("Note", setBundle(null));
+            mMainToEdit.putExtra("Note", -1);
+            mMainToEdit.putExtra("CheckMode", false);
             startActivityForResult(mMainToEdit, CREATE_NEW_NOTE);
             return true;
         }
@@ -164,6 +150,20 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
             return true;
         }
+        else if (id == R.id.action_share_app) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            String string = getResources().getString(R.string.share_text);
+            intent.putExtra(Intent.EXTRA_TEXT, string);
+            startActivity(intent);
+        }
+        else if (id == R.id.action_rate_app) {
+            Intent intent = new Intent();
+            intent.setType(Intent.ACTION_VIEW)
+                    .setData(Uri.parse(getResources().getString(R.string.market_rate)));
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -171,53 +171,36 @@ public class MainActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CREATE_NEW_NOTE && resultCode == NOTE_BACK) {
-            note = getNote(data.getBundleExtra("NoteBack"));
-            if (note != null) {
-                if (note.getText().equals("")) return;
-                arrayList.add(0, note);
-                adapterList.notifyDataSetChanged();
-            }
-        }
-        else if (requestCode == EDIT_NOTE && resultCode == NOTE_BACK) {
-            note = getNote(data.getBundleExtra("NoteBack"));
-            if (note != null) {
-                if (note.getText().equals("")) {
-                    arrayList.remove(location_editnote);
-                    adapterList.notifyDataSetChanged();
-                }
-                else {
-                    arrayList.set(location_editnote, note);
-                    adapterList.notifyDataSetChanged();
-                }
-            }
-        }
-        else if (requestCode == LOGIN && resultCode == LOGIN_STATUS_BACK) {
+        if (requestCode == LOGIN && resultCode == LOGIN_STATUS_BACK) {
             boolean status = data.getBooleanExtra("login_status", false);
             if (!status) {
                 finish();
             }
         }
         else if (requestCode == SYNC_TASK && resultCode == RESTORE_DONE) {
-            saveDataMode = false;
             finish();
         }
+
     }
 
-    // Initial settup for main activity
+    // Initial setup for main activity
     private void readingSetup(Context context) {
+
+        intent = getIntent();
+        quickOpenNote = intent.getBooleanExtra("QuickOpenNote", false);
 
         // Connect Object to xml /////////////////////////////////////////
         list = (StaggeredGridView) findViewById(R.id.list_note_staggered);
-        arrayList = new ArrayList<Note_item>();
+        arrayList = new ArrayList<NoteItem>();
         /////////////////////////////////////////////////////////////////
 
         // Setup for ListView
-        adapterList = new Note_adapter (MainActivity.this, arrayList);
+        adapterList = new NoteAdapter(MainActivity.this, arrayList, list);
         list.setAdapter(adapterList);
 
         // Setup Database
         database = new DatabaseMng(context);
+        database.checkAndCreateTable();
 
         // Setup start reading data
         loadDatabase();
@@ -241,10 +224,10 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-        // Make an Intruction if list note is empty
+        // Make an Instruction if list note is empty
         if (database.getNoteCount() <= 0){
-            note = new Note_item(99, "Intruction tip","Welcome to Stenograph\nStenograph is the most simple app you have ever seen\nPress the Plus button and write down on the top box and make a quick note\nHope you have fun with this app ;)", "Deer, the actor of this app", getResources().getColor(R.color.blue), true);
-            arrayList.add(0, note);
+            note = new NoteItem(99, "Instruction tip","Welcome to Stenograph\nStenograph is the most simple app you have ever seen\nPress the Plus button and write down on the top box and make a quick note\nHope you have fun with this app ;)", "Deer, the actor of this app", getResources().getColor(R.color.blue), true);
+            database.addNote(note);
             adapterList.notifyDataSetChanged();
         }
 
@@ -252,46 +235,127 @@ public class MainActivity extends ActionBarActivity {
         String list_column_setting = sharedPref.getString("list_column", "2");
         list.setColumnCount(Integer.parseInt(list_column_setting));
 
-//        turn off over scrolling effect
-//        list.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        if (quickOpenNote) {
+            NoteItem item = database.getNote(intent.getIntExtra("ID", -1));
+            if (item != null) {
+                if (item.getText().compareTo("") == 0) {
+                    mMainToEdit.putExtra("CheckMode", true);
+                }
+                else {
+                    mMainToEdit.putExtra("CheckMode", false);
+                }
+            }
+            mMainToEdit.putExtra("Note", intent.getIntExtra("ID", -1));
+            startActivityForResult(mMainToEdit, EDIT_NOTE);
+        }
+
     }
 
     public Dialog longClickNotes(Bundle bundle) {
         final int position = bundle.getInt("Position", -1);
         if (position == -1) return null;
-        MaterialDialogCompat.Builder dialog = new MaterialDialogCompat.Builder(MainActivity.this);
+        MaterialDialog.Builder dialog = new MaterialDialog.Builder(MainActivity.this);
         if (arrayList.get(position).getBold()) {
-            dialog.setItems(R.array.long_click_note_mark, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (which == 0) {
-                        arrayList.get(position).setBold(false);
-                    }
-                    else if (which == 1) {
-                        arrayList.remove(position);
-                    }
-                    adapterList.notifyDataSetChanged();
-                }
-            });
+            dialog.items(R.array.long_click_note_mark)
+                    .itemsCallback(new MaterialDialog.ListCallback() {
+                        @Override
+                        public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            if (i == 0) {
+                                NoteItem item = database.getNote(arrayList.get(position).getId());
+                                item.setBold(false);
+                                database.updateNote(item);
+                            } else if (i == 2) {
+                                database.removeCheckItemWithNoteId(arrayList.get(position).getId());
+                                database.removeNote(arrayList.get(position).getId());
+                            }
+                            else if (i == 1) {
+                                if (arrayList.get(position).getText().compareTo("") == 0) {
+                                    ArrayList<CheckItem> tempCheckItems = database
+                                            .getAllCheckItemWithNoteID(arrayList.get(position).getId());
+
+                                    String text = "- ";
+                                    for (int j = 0; j < tempCheckItems.size() - 1; j++) {
+                                        if (j == tempCheckItems.size() - 2) {
+                                            text = text + tempCheckItems.get(j).getText();
+                                        }
+                                        else {
+                                            text = text + tempCheckItems.get(j).getText() + "\n- ";
+                                        }
+                                    }
+
+                                    Intent share = new Intent();
+                                    share.setAction(Intent.ACTION_SEND);
+                                    share.putExtra(Intent.EXTRA_TITLE, arrayList.get(position).getTitle());
+                                    share.putExtra(Intent.EXTRA_TEXT, text);
+                                    share.setType("text/plain");
+                                    startActivity(share);
+                                }
+                                else {
+                                    Intent share = new Intent();
+                                    share.setAction(Intent.ACTION_SEND);
+                                    share.putExtra(Intent.EXTRA_TITLE, arrayList.get(position).getTitle());
+                                    share.putExtra(Intent.EXTRA_TEXT, arrayList.get(position).getText());
+                                    share.setType("text/plain");
+                                    startActivity(share);
+                                }
+                            }
+                            loadDatabase();
+                        }
+                    });
         }
         else {
-            dialog.setItems(R.array.long_click_note_no_mark, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if (which == 0) {
-                        arrayList.get(position).setBold(true);
-                    }
-                    else if (which == 1) {
-                        arrayList.remove(position);
-                    }
-                    adapterList.notifyDataSetChanged();
-                }
-            });
+            dialog.items(R.array.long_click_note_no_mark)
+                    .itemsCallback(new MaterialDialog.ListCallback() {
+                        @Override
+                        public void onSelection(MaterialDialog materialDialog, View view, int i, CharSequence charSequence) {
+                            if (i == 0) {
+                                NoteItem item = database.getNote(arrayList.get(position).getId());
+                                item.setBold(true);
+                                database.updateNote(item);
+                            }
+                            else if (i == 2) {
+                                database.removeCheckItemWithNoteId(arrayList.get(position).getId());
+                                database.removeNote(arrayList.get(position).getId());
+                            }
+                            else if (i == 1) {
+                                if (arrayList.get(position).getText().compareTo("") == 0) {
+                                    ArrayList<CheckItem> tempCheckItems = database
+                                            .getAllCheckItemWithNoteID(arrayList.get(position).getId());
+
+                                    String text = "- ";
+                                    for (int j = 0; j < tempCheckItems.size() - 1; j++) {
+                                        if (j == tempCheckItems.size() - 2) {
+                                            text = text + tempCheckItems.get(j).getText();
+                                        }
+                                        else {
+                                            text = text + tempCheckItems.get(j).getText() + "\n- ";
+                                        }
+                                    }
+
+                                    Intent share = new Intent();
+                                    share.setAction(Intent.ACTION_SEND);
+                                    share.putExtra(Intent.EXTRA_TITLE, arrayList.get(position).getTitle());
+                                    share.putExtra(Intent.EXTRA_TEXT, text);
+                                    share.setType("text/plain");
+                                    startActivity(share);
+                                }
+                                else {
+                                    Intent share = new Intent();
+                                    share.setAction(Intent.ACTION_SEND);
+                                    share.putExtra(Intent.EXTRA_TITLE, arrayList.get(position).getTitle());
+                                    share.putExtra(Intent.EXTRA_TEXT, arrayList.get(position).getText());
+                                    share.setType("text/plain");
+                                    startActivity(share);
+                                }
+                            }
+                            loadDatabase();
+                        }
+                    });
         }
-        return dialog.create();
+        return dialog.build();
     }
 
-    private Bundle setBundle(Note_item note) {
+    private Bundle setBundle(NoteItem note) {
         Bundle bundle = new Bundle();
         if (note == null) return bundle;
         bundle.putString("Title", note.getTitle());
@@ -304,8 +368,8 @@ public class MainActivity extends ActionBarActivity {
         return bundle;
     }
 
-    private Note_item getNote(Bundle bundle) {
-        Note_item note = new Note_item();
+    private NoteItem getNote(Bundle bundle) {
+        NoteItem note = new NoteItem();
         if (bundle == null) return note;
         note.setTitle(bundle.getString("Title", "Quick note"));
         note.setText(bundle.getString("Text", ""));
@@ -317,27 +381,20 @@ public class MainActivity extends ActionBarActivity {
         return note;
     }
 
-    public void saveDatabase(){
-        posNote = 0;
-        database.delAllNote();
-        int size = arrayList.size();
-        while (posNote < size){
-            arrayList.get(posNote).setId(posNote);
-            database.addNote(arrayList.get(posNote));
-            posNote++;
-        }
-        database.close();
-    }
-
-    public void loadDatabase(){
-        posNote = 0;
-        int size = database.getNoteCount();
-        while ((size - 1) >= 0){
-            arrayList.add(0, database.getNote(size-1));
-            arrayList.get(0).setRemind(database.getNote(size-1).getRemind());
-            size--;
-        }
+    private void loadDatabase(){
+        arrayList.clear();
+        if (database.getAllNote() != null)
+            arrayList.addAll(database.getAllNote());
         adapterList.notifyDataSetChanged();
     }
 
+    private int getMaxNoteId() {
+        int max = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (max < arrayList.get(i).getId()) {
+                max = arrayList.get(i).getId();
+            }
+        }
+        return max;
+    }
 }

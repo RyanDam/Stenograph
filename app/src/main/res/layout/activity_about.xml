@@ -1,26 +1,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="com.rstudio.notii_pro.AboutActivity"
     android:background="@color/background_color_2">
 
-    <ScrollView
+    <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scrollView3" >
+        android:layout_height="fill_parent">
 
-        <FrameLayout
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/about_layout"
+            android:layout_gravity="top|center" />
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal">
 
-            <include
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                layout="@layout/about_layout"
-                android:layout_gravity="top|center" />
-        </FrameLayout>
-    </ScrollView>
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/button_divider_color_blue"></FrameLayout>
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:text="@string/rate_text"
+                android:id="@+id/rate_button"
+                android:layout_gravity="bottom|center_horizontal"
+                android:background="@drawable/button_blue_style"
+                android:textColor="@color/button_text_color_blue" />
+
+        </LinearLayout>
+    </FrameLayout>
 </RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LightTheme" parent="AppTheme">
+        <item name="actionBarStyle">@style/actionbar_style</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:statusBarColor">#000000</item>
+    </style>
+
+    <style name="LightTheme_transparent_actionbar" parent="AppTheme">
+        <item name="actionBarStyle">@style/actionbar_style_transparent</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+</resources>

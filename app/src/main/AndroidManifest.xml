@@ -14,6 +14,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <!--//////////////////// Activity ///////////////////////-->
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/icon_stenograph"
@@ -29,6 +30,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
@@ -40,6 +42,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rstudio.notii_pro.MainActivity" />
         </activity>
+
         <activity
             android:name=".Editnote"
             android:label="@string/title_activity_editnote"
@@ -47,11 +50,42 @@
             android:theme="@style/LightTheme" >
         </activity>
 
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
+
+        <activity
+            android:name=".SyncActivity"
+            android:label="@string/title_activity_sync"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rstudio.notii_pro.MainActivity" />
+        </activity>
+
+
+        <!--////////////////// Service ///////////////////-->
+
         <service
             android:name=".SendNotification"
             android:enabled="true"
             android:exported="true" >
         </service>
+
+        <service
+            android:name=".StartAlarm"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+
+        <!--///////////////// Reciver ///////////////////-->
 
         <receiver
             android:name=".ActionReceiver"
@@ -62,34 +96,6 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".StartAlarm"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
-
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
-            <!-- android:windowSoftInputMode="adjustResize|stateVisible" -->
-        </activity>
-        <activity
-            android:name=".SyncActivity"
-            android:label="@string/title_activity_sync"
-            android:parentActivityName=".MainActivity" >
-            <!-- <intent-filter> -->
-            <!-- <action android:name=".SyncActivityStart" /> -->
-            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name=".AboutActivity"
-            android:label="@string/title_activity_about"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.rstudio.notii_pro.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

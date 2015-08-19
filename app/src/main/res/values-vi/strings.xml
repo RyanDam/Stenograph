@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stenograph</string>
+    <string name="action_settings">Cài đặt</string>
+    <string name="database_name">NotesDatabases.db</string>
+    <string name="backup_button">Sao lưu</string>
+    <string name="restore_button">Phục hồi</string>
+    <string name="plus_button">+</string>
+    <string name="hint_password">Nhập mật khẩu...</string>
+    <string name="button_password">Đăng nhập</string>
+    <string name="hint_input_text">Ghi nhanh vào đây...</string>
+    <string name="hint_title">Tiêu đề của ghi chú...</string>
+    <string name="hint_text">Viết ghi chú ở đây...</string>
+    <string name="action_plus">Thêm một ghi chú</string>
+    <string name="action_check_list">Thêm danh sách</string>
+    <string name="action_edit_color">Đổi màu của ghi chú</string>
+    <string name="action_flag">Đánh dấu/bỏ đánh dấu</string>
+    <string name="action_remind">Đặt báo thức</string>
+    <string name="action_delete">Xóa</string>
+    <string name="action_share">Chia sẻ</string>
+    <string name="action_rate">Đánh giá</string>
+    <string name="action_sync">Sao lưu</string>
+    <string name="action_about">Thông tin</string>
+    <string name="title_activity_main_activity2">MainActivity2</string>
+    <string name="demo_text">this is demo text\nasdasdfsdag\nfgjewrtteytry\ncvxzsxbsfdg\ntrherytfsh</string>
+    <string name="title_activity_editnote">Chỉnh sửa</string>
+    <string name="cancel">Hủy</string>
+    <string name="ok">OK</string>
+    <string name="remind_set">Tôi sẽ nhắc bạn lúc đó!</string>
+    <string name="delete_note">Xóa ghi chú này?</string>
+    <string name="delete_note_remind">Xóa nhắc nhở này?</string>
+    <string name="title_activity_login">Đăng nhập</string>
+    <string name="title_activity_sync">Sync Data</string>
+    <string name="title_activity_about">About</string>
+    <string name="rate_text">Chấm điểm ứng dụng</string>
+    <string name="share_text">Này, có ứng dụng ghi chú này hay mà đẹp lắm:\n
+        https://play.google.com/store/apps/details?id=com.RStudio.notii_pro</string>
+    <string name="market_rate">market://details?id=com.RStudio.notii_pro</string>
+    <string name="check_text_hint">Mục mới...</string>
+    <string name="about_string">Stenograph 2.1.1\n\n
+            .R Studio\n\n
+            Đây là ứng dụng đầu tiên mình làm\n
+            Mình tạo ứng dụng này để cho vui và\n
+            giúp mình luyện tập code\n\n
+            Mong bạn thích ứng dụng này, thân ái.</string>
+    <string name="sync_help_string">Bạn có thể sao lưu ghi chú\n
+                lên mây (Google Drive). Bạn sẽ cần\n
+                internet để sử dụng tính năng này.\n\n
+                Ghi chú hiện tại sẽ mất hết. Cẩn thận nhé!</string>
+    <string name="wrong_time_pick">Chọn sai giờ rồi :(</string>
+    <string name="will_remind_text">Sẽ nhắc bạn lúc</string>
+    <string name="edit_text_note">Đã sửa</string>
+    <string name="create_text_note">Đã tạo</string>
+    <string name="remind_text_note">Sẽ nhắc bạn lúc</string>
+    <string name="reminded_text_note">Đã nhắc lúc</string>
+    <string name="will_remind_text_note">Sẽ nhắc bạn</string>
+    <string name="will_reminded_text_note">Đã nhắc</string>
+</resources>

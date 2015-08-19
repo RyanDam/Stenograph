@@ -26,7 +26,6 @@ public class LoginActivity extends ActionBarActivity {
     private String password;
     private Intent intent;
     private boolean status;
-    private TextView login_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +36,10 @@ public class LoginActivity extends ActionBarActivity {
         // Connect object to xml
         input_password = (EditText) findViewById(R.id.input_password);
         button_signin = (Button) findViewById(R.id.button_password);
-        login_text = (TextView) findViewById(R.id.login_text);
 
         // get parent intent
         intent = getIntent();
         status = false;
-
-        // setup instruction text
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/archer.ttf");
-        String text;
-        text = "Welcome to Stenogaph ^_^\n"
-                + "You have to enter pass word to login.\n"
-                + "Please enter password to text box below\n"
-                + "and press LOGIN to start Stenograph.";
-        login_text.setText(text);
-        login_text.setTypeface(font);
 
         // get password and handle it
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);

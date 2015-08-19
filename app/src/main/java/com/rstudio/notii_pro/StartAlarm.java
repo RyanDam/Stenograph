@@ -6,14 +6,20 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.rstudio.notii_pro.database.DatabaseMng;
+import com.rstudio.notii_pro.item.NoteItem;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class StartAlarm extends Service {
+
     public StartAlarm() {
     }
 
-    int databaseSize = 0;
     public static AlarmManager am;
     public static DatabaseMng database;
 
@@ -28,19 +34,21 @@ public class StartAlarm extends Service {
     public void onStart(Intent intent, int startId){
         super.onStart(intent, startId);
         database = new DatabaseMng(this);
-        databaseSize = database.getNoteCount();
         Calendar now = Calendar.getInstance();
         Intent passNotify = new Intent(this, SendNotification.class);
+        ArrayList<NoteItem> data = database.getAllNote();
+
         // Send pending intent alarm if there is remind
-        for (int i=1 ; i < databaseSize ; i++){
-            if ( database.getNote(i).getRemind() > now.getTimeInMillis() ){
-                passNotify.putExtra("Text", database.getNote(i).getTitle());
-                passNotify.putExtra("ID", i);
+        for (int i=0 ; i < data.size() ; i++){
+            if (data.get(i).getRemind() > now.getTimeInMillis()) {
+                passNotify.putExtra("Text", data.get(i).getTitle());
+                passNotify.putExtra("ID", data.get(i).getId());
                 PendingIntent pending = PendingIntent.getService(this, i, passNotify, PendingIntent.FLAG_UPDATE_CURRENT);
                 am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
-                am.set(AlarmManager.RTC_WAKEUP, database.getNote(i).getRemind(), pending);
+                am.set(AlarmManager.RTC_WAKEUP, data.get(i).getRemind(), pending);
             }
         }
+
         // kill itself to save memory
         this.stopSelf();
     }

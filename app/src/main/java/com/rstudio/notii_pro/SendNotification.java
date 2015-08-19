@@ -23,15 +23,17 @@ public class SendNotification extends Service {
     public void onStart(Intent intent, int startId){
         super.onStart(intent, startId);
         Intent returnMain = new Intent(this, MainActivity.class);
-        PendingIntent pending = PendingIntent.getActivity(this, 1, returnMain, 0);
+        returnMain.putExtra("ID", intent.getIntExtra("ID", 0));
+        returnMain.putExtra("QuickOpenNote", true);
+        PendingIntent pending = PendingIntent.getActivity(this, 1, returnMain, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(pending)
-                .setTicker("Oops")
+                .setTicker(intent.getStringExtra("Text"))
                 .setContentText(intent.getStringExtra("Text"))
                 .setContentTitle("I got reminder for you")
-                .setSmallIcon(R.drawable.icon_stenograph)
-                .addAction(R.drawable.action_delete, "Oops", pending)
+                .setSmallIcon(R.drawable.noti_icon)
+                .addAction(R.drawable.tick_yes, getResources().getString(R.string.ok), pending)
                 .setVibrate(new long []{100, 250, 100, 500})
                 .build();
         notification.defaults |= Notification.DEFAULT_SOUND;

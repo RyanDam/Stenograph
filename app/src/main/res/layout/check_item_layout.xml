@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/requestFocus">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/check_item_cb"
+                android:layout_gravity="center_vertical" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/check_item_tb"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:hint="@string/check_text_hint"
+                android:background="@color/transparent"
+                android:gravity="left|center"
+                android:textSize="16dp"
+                android:textColorHint="@color/check_text_hint" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right">
+
+            <ImageButton
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="del"
+                android:id="@+id/check_item_del"
+                android:layout_gravity="center_vertical" />
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:text="add"
+                android:id="@+id/check_item_add"
+                android:src="@drawable/add_check_item"
+                android:background="@color/transparent"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
