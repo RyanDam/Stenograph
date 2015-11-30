@@ -39,6 +39,7 @@ public class SendNotification extends Service {
         notification.defaults |= Notification.DEFAULT_SOUND;
         notification.defaults |= Notification.DEFAULT_VIBRATE;
         notification.defaults |= Notification.DEFAULT_LIGHTS;
+
         nm.notify(intent.getIntExtra("ID", 0), notification);
         // kill itself to save memory
         this.stopSelf();

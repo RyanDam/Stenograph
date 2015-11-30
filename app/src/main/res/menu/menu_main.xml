@@ -23,4 +23,7 @@
     <item android:id="@+id/action_check_list" android:title="@string/action_check_list"
         android:orderInCategory="300" app:showAsAction="always" android:icon="@drawable/action_checklist" />
 
+    <item android:id="@+id/action_search" android:title="@string/action_search"
+        android:orderInCategory="350" app:showAsAction="always" android:icon="@drawable/action_search" />
+
 </menu>

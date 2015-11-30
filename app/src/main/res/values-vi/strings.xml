@@ -14,6 +14,7 @@
     <string name="action_plus">Thêm một ghi chú</string>
     <string name="action_check_list">Thêm danh sách</string>
     <string name="action_edit_color">Đổi màu của ghi chú</string>
+    <string name="action_search">Tìm kiếm</string>
     <string name="action_flag">Đánh dấu/bỏ đánh dấu</string>
     <string name="action_remind">Đặt báo thức</string>
     <string name="action_delete">Xóa</string>
@@ -37,7 +38,7 @@
         https://play.google.com/store/apps/details?id=com.RStudio.notii_pro</string>
     <string name="market_rate">market://details?id=com.RStudio.notii_pro</string>
     <string name="check_text_hint">Mục mới...</string>
-    <string name="about_string">Stenograph 2.1.1\n\n
+    <string name="about_string">Stenograph 2.2.0\n\n
             .R Studio\n\n
             Đây là ứng dụng đầu tiên mình làm\n
             Mình tạo ứng dụng này để cho vui và\n

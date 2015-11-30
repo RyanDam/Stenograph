@@ -6,8 +6,8 @@
     <color name="blue">#ff3d9cff</color>
     <color name="semi_transparent">#50000000</color>
     <color name="transparent">#00000000</color>
-    <color name="actionbar_color">#ffe8e8e8</color>
-    <color name="statusbar_color">#ff000000</color>
+    <color name="actionbar_color">#ffffff</color>
+    <color name="statusbar_color">#000000</color>
     <color name="title_color">#ffffff</color>
     <color name="background_color">#ffffffff</color>
     <color name="background_color_2">#ffffffff</color>
@@ -17,6 +17,8 @@
 
     <color name="button_color">#000000</color>
     <color name="button_color_stressed">#393939</color>
+    <color name="button_color_bright">#ffffff</color>
+    <color name="button_color_bright_stressed">#d0d0d0</color>
 
     <color name="button_color_blue">#ff098dff</color>
     <color name="button_color_blue_stressed">#066ac0</color>
@@ -29,4 +31,9 @@
     <color name="check_text_empty">#72000000</color>
     <color name="check_text_fielded">#ef000000</color>
     <color name="check_text_hint">#3f000000</color>
+    <color name="primary_material_light">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="main_search_background">#ffffff</color>
+
 </resources>

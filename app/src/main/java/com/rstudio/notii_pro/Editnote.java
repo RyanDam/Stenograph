@@ -13,6 +13,8 @@ import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +25,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -39,13 +42,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Editnote extends ActionBarActivity {
+public class Editnote extends AppCompatActivity {
 
     private Intent intent;
     private NoteItem note_item;
     private Typeface font_bold, font_regular;
 
-    private FrameLayout background;
+    private RelativeLayout background;
     private EditText title, text;
     private TextView date;
     private ImageView flag;
@@ -76,7 +79,8 @@ public class Editnote extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editnote);
-
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.mainToolbar);
+        setSupportActionBar(mToolbar);
         // Setup ActionBar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -138,7 +142,7 @@ public class Editnote extends ActionBarActivity {
     private void setupConnector() {
 
         // Setup handle
-        background = (FrameLayout) findViewById(R.id.editNote_background);
+        background = (RelativeLayout) findViewById(R.id.editNote_background);
         title = (EditText) findViewById(R.id.editNote_title);
         text = (EditText) findViewById(R.id.editNote_text);
         date = (TextView) findViewById(R.id.editNote_time);

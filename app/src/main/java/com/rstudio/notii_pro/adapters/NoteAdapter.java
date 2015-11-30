@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.origamilabs.library.views.StaggeredGridView;
+//import com.origamilabs.library.views.StaggeredGridView;
 import com.rstudio.notii_pro.database.DatabaseMng;
 import com.rstudio.notii_pro.item.CheckItem;
 import com.rstudio.notii_pro.item.NoteItem;
@@ -29,17 +29,17 @@ public class NoteAdapter extends BaseAdapter {
     private long remind;
 	private Typeface bold, regular;
 	private DatabaseMng database;
-	private StaggeredGridView mListViewCallBack;
+//	private StaggeredGridView mListViewCallBack;
 	private LayoutInflater mInflater;
 
-	public NoteAdapter(Context mContext, ArrayList<NoteItem> noteItem, StaggeredGridView callback){
+	public NoteAdapter(Context mContext, ArrayList<NoteItem> noteItem /*StaggeredGridView callback*/){
 		super();
 		this.mContext = mContext;
 		database = new DatabaseMng(mContext);
 		this.noteItem = noteItem;
         bold = Typeface.createFromAsset(mContext.getAssets(), "fonts/slab_bold.ttf");
         regular = Typeface.createFromAsset(mContext.getAssets(), "fonts/slab_regular.ttf");
-		mListViewCallBack = callback;
+//		mListViewCallBack = callback;
 		mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	

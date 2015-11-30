@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="LightTheme" parent="AppTheme">
+    <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="actionBarStyle">@style/actionbar_style</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <item name="android:statusBarColor">#000000</item>
@@ -9,5 +9,11 @@
     <style name="LightTheme_transparent_actionbar" parent="AppTheme">
         <item name="actionBarStyle">@style/actionbar_style_transparent</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:dialogLayout">@style/noTitleDialog</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 </resources>

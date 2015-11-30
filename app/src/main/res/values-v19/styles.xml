@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="LightTheme" parent="AppTheme">
+    <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="actionBarStyle">@style/actionbar_style</item>
         <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>

@@ -6,6 +6,8 @@ import android.content.IntentSender;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +47,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class SyncActivity extends ActionBarActivity implements ConnectionCallbacks, OnConnectionFailedListener {
+public class SyncActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener {
 
     private Button backup, restore;
     private boolean modeBackup;
@@ -58,6 +60,8 @@ public class SyncActivity extends ActionBarActivity implements ConnectionCallbac
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         setContentView(R.layout.activity_sync);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.mainToolbar);
+        setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setElevation(0);

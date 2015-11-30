@@ -4,9 +4,16 @@
     tools:context="com.rstudio.notii_pro.AboutActivity"
     android:background="@color/background_color_2">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/mainToolbar">
+        </android.support.v7.widget.Toolbar>
+
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/mainToolbar">
 
         <include
             android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.rstudio.notii_pro.item.CheckItem;
 import com.rstudio.notii_pro.item.NoteItem;
@@ -19,6 +20,7 @@ public class DatabaseMng extends SQLiteOpenHelper {
 	private String TABLE_NOTES = "TableNotes", LIST_CHECK_TABLE = "List";
 	static String DATABASE_NAME = "NotesDatabases.db";
 	static int DATABASE_VERSION = 1;
+
 	private String KEY_TITLE = "Title", KEY_TEXT = "Text", KEY_DATE = "Date"
 			, KEY_COLOR = "Color", KEY_BOLD = "isBold", KEY_REMIND = "Remind";
 	private String KEY_ORDER = "NoteOrder", KEY_NOTE = "KeyNote", KEY_CHECK = "isChecked";
@@ -319,6 +321,90 @@ public class DatabaseMng extends SQLiteOpenHelper {
 			}
 		}
 		return false;
+	}
+
+	public ArrayList<NoteItem> search(String s) {
+		SQLiteDatabase db = getReadableDatabase();
+		String query = "SELECT "
+
+                    + " TB1." + KEY_ID + ", TB1." + KEY_TITLE + ", TB1." + KEY_TEXT
+                    + ", TB1." + KEY_DATE + ", TB1." + KEY_COLOR + ", TB1." + KEY_BOLD + ", TB1." + KEY_REMIND
+
+                    + " FROM " + TABLE_NOTES + " AS TB1 LEFT OUTER JOIN " + LIST_CHECK_TABLE + " AS TB2 "
+					+ " ON TB1." + KEY_ID + "=" + "TB2." + KEY_NOTE + ""
+
+					+ " WHERE TB1." + KEY_TEXT + " LIKE '%" + s + "%'"
+					+ " OR TB1." + KEY_TITLE + " LIKE '%" + s + "%'"
+					+ " OR TB2." + KEY_TEXT + " LIKE '%" + s + "%'";
+		Cursor cur = db.rawQuery(query, null);
+
+		if (cur != null && cur.getCount() > 0) {
+			ArrayList<NoteItem> ret = new ArrayList<>();
+
+			print(cur, s);
+
+			cur.moveToLast();
+			do {
+
+                int id = cur.getInt(cur.getColumnIndex(KEY_ID));
+
+                if (!checkIfIdExistInList(ret, id)) {
+                    NoteItem note = new NoteItem();
+                    note.setId(id);
+                    note.setTitle(cur.getString(cur.getColumnIndex(KEY_TITLE)));
+                    note.setText(cur.getString(cur.getColumnIndex(KEY_TEXT)));
+                    note.setDate(cur.getString(cur.getColumnIndex(KEY_DATE)));
+                    note.setColor(cur.getInt(cur.getColumnIndex(KEY_COLOR)));
+                    note.setBold(getBoolean(cur.getInt(cur.getColumnIndex(KEY_BOLD))));
+                    note.setRemind(cur.getLong(cur.getColumnIndex(KEY_REMIND)));
+                    ret.add(note);
+                }
+
+				if (cur.isFirst()) break;
+				else cur.moveToPrevious();
+			} while (true);
+			return ret;
+		}
+		else {
+			return new ArrayList<>();
+		}
+	}
+
+    public boolean checkIfIdExistInList(ArrayList<NoteItem> list, int id) {
+        for (NoteItem item : list) {
+            if (item.getId() == id) return true;
+        }
+        return false;
+    }
+
+	public void print(Cursor cur, String s) {
+
+		if (cur != null && cur.getCount() > 0) {
+			cur.moveToFirst();
+			do {
+
+//                StringBuilder ss = new StringBuilder("");
+//
+//                for(int i=0; i<cur.getColumnCount();i++)
+//                {
+//                    ss.append(cur.getColumnName(i) + "\t");
+//                }
+//
+//                Log.d(s, ss.toString());
+
+				Log.d(s, "" + cur.getInt(cur.getColumnIndex(KEY_ID)) + "\t"
+							+ cur.getString(cur.getColumnIndex(KEY_TITLE)) + "\t"
+							+ cur.getString(cur.getColumnIndex(KEY_TEXT)) + "\t"
+							+ cur.getString(cur.getColumnIndex(KEY_DATE)) + "\t"
+							+ cur.getInt(cur.getColumnIndex(KEY_COLOR)) + "\t"
+							+ cur.getInt(cur.getColumnIndex(KEY_BOLD)) + "\t"
+							+ cur.getLong(cur.getColumnIndex(KEY_REMIND)));
+
+				if (cur.isLast()) break;
+				else cur.moveToNext();
+			} while(true);
+		}
+
 	}
 
 	public void removeAllNote(){

@@ -14,6 +14,7 @@
     <string name="hint_text">Write your note here...</string>
     <string name="action_plus">Add a note</string>
     <string name="action_check_list">Add checklist</string>
+    <string name="action_search">Search</string>
     <string name="action_edit_color">Change color of note</string>
     <string name="action_flag">Mark/Unmark note</string>
     <string name="action_remind">Set remind</string>
@@ -40,7 +41,7 @@
     <string name="market_rate">market://details?id=com.RStudio.notii_pro</string>
     <string name="check_text_hint">New item...</string>
 
-    <string name="about_string">Stenograph 2.1.1\n\n
+    <string name="about_string">Stenograph 2.2.0\n\n
             .R Studio\n\n
             This is my first app on android\n
             I just made this app for fun and\n

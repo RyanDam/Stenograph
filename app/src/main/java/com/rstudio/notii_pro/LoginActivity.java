@@ -1,5 +1,6 @@
 package com.rstudio.notii_pro;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -7,9 +8,11 @@ import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,7 +22,7 @@ import com.rstudio.notii_pro.R;
 
 import org.w3c.dom.Text;
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText input_password;
     private Button button_signin;
@@ -31,7 +34,7 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         // Connect object to xml
         input_password = (EditText) findViewById(R.id.input_password);
@@ -53,16 +56,16 @@ public class LoginActivity extends ActionBarActivity {
                     intent.putExtra("login_status", true);
                     setResult(MainActivity.LOGIN_STATUS_BACK, intent);
                     LoginActivity.this.finish();
-                }
-                else if (input_pass.equals("")) {
+                } else if (input_pass.equals("")) {
                     Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(LoginActivity.this, "Wrong password", Toast.LENGTH_SHORT).show();
                     input_password.setText("");
                 }
             }
         });
+
+
     }
 
     @Override
@@ -72,6 +75,11 @@ public class LoginActivity extends ActionBarActivity {
         intent.putExtra("login_status", status);
         setResult(MainActivity.LOGIN_STATUS_BACK, intent);
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

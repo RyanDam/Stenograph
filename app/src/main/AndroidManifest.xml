@@ -18,7 +18,8 @@
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/icon_stenograph"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,34 +1,101 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:staggered="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/statusbar_color" >
+    android:background="@color/statusbar_color">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/background_color">
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:id="@+id/main_holder">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_list"
 
-            <com.origamilabs.library.views.StaggeredGridView
-                android:layout_width="fill_parent"
+            android:paddingLeft="@dimen/padding_gridview"
+            android:scrollbars="vertical"
+            android:scrollbarStyle="outsideInset"
+            android:elevation="0dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            <!--android:paddingRight="@dimen/padding_gridview"-->
+
+        </android.support.v7.widget.RecyclerView>
+
+        <!--<android.support.design.widget.AppBarLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--app:elevation="0dp">-->
+            <!--<android.support.v7.widget.Toolbar-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="?attr/actionBarSize"-->
+                <!--android:id="@+id/mainToolbar"-->
+                <!--app:layout_scrollFlags="scroll|enterAlways"-->
+                <!--android:background="#ffffff">-->
+            <!--</android.support.v7.widget.Toolbar>-->
+        <!--</android.support.design.widget.AppBarLayout>-->
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:elevation="0dp">
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/mainToolbar"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:background="#ffffff">
+            </android.support.v7.widget.Toolbar>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/list_note_staggered"
-                staggered:numColumns="4"
-                android:padding="@dimen/padding_gridview"
-                android:background="@color/background_color"/>
+                android:id="@+id/search_holder"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:visibility="visible"
+                android:background="#ffffff">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/search_input"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="false"
+                        android:layout_toStartOf="@id/search_button"
+                        android:layout_toRightOf="@+id/search_button"
+                        android:hint="Enter here..."
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:background="#ffffff"
+                        android:textSize="16dp" />
 
-        </LinearLayout>
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/search_button"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/action_close_search"
+                        android:background="@drawable/button_close_search"
+                        android:scaleType="fitCenter"
+                        android:padding="6dp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </android.support.design.widget.AppBarLayout>
 
-    </FrameLayout>
+    </android.support.design.widget.CoordinatorLayout>
 
 </RelativeLayout>
